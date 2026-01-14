@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.btn-group {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 8px;
+    border: none;
+    border-radius: 6px;
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* 数独棋盘核心样式 - 9x9格子，粗线分隔3x3宫 */
+.sudoku-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 50px);
+    grid-template-rows: repeat(9, 50px);
+    gap: 1px;
+    background-color: #333;
+    border: 2px solid #333;
+}
+
+.sudoku-cell {
+    width: 50px;
+    height: 50px;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+}
+
+/* 给3x3的宫加粗边框，区分九宫格 */
+.sudoku-cell:nth-child(3n) { border-right: 2px solid #333; }
+.sudoku-cell:nth-child(9n) { border-right: none; }
+.sudoku-cell:nth-child(n+19):nth-child(-n+27),
+.sudoku-cell:nth-child(n+46):nth-child(-n+54) { border-bottom: 2px solid #333; }
+
+/* 原始题目数字 - 深灰色，不可修改 */
+.sudoku-cell.original {
+    color: #2c3e50;
+    background-color: #f8f9fa;
+    cursor: not-allowed;
+}
+
+/* 玩家填写的数字 - 蓝色 */
+.sudoku-cell.user {
+    color: #165DFF;
+}
+
+/* 非法填写（重复）- 红色警告 */
+.sudoku-cell.error {
+    color: #e74c3c;
+    background-color: #ffebee;
+}
